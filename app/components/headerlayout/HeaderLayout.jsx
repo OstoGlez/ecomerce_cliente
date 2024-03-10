@@ -52,31 +52,38 @@ const Header = () => {
   };
 
   return (
-    <Box as="header" bg="tropical.sky" color="white" p="4">
+    <Box as="header" bg="tropical.sky" color="white" p="1.5">
       <Flex justify="space-between" align="center">
-        <Box>
-          <Image src="/logoro.png" alt="Logo" width={100} height={90} />
+        <Box ml={["2em", "null", "4em", "null", "null", "null"]}>
+          <Image src="/tropical.png" alt="Logo" width={100} height={100} />
         </Box>
-        <Menu isOpen={isOpen} onClose={() => setIsOpen(false)}>
-          <MenuButton
-            as={IconButton}
-            icon={<HamburgerIcon fontSize="30px" />}
-            color="white"
-            onClick={toggleMenu}
-            aria-label="Open Menu"
-            variant="ghost"
-            _hover={{ bg: "#298fcab7" }}
+        <Box mr={["2em", "null", "4em", "null", "null", "null"]} display="flex">
+          <Menu isOpen={isOpen} onClose={() => setIsOpen(false)} ml="100px">
+            <MenuButton
+              as={IconButton}
+              icon={<HamburgerIcon fontSize="30px" />}
+              color="white"
+              onClick={toggleMenu}
+              aria-label="Open Menu"
+              variant="ghost"
+              _hover={{ bg: "#298fca6c" }}
+            >
+              Menú
+            </MenuButton>
+            <MenuList color="black">
+              <MenuItem onClick={openLoginModal}>Inicio</MenuItem>
+              <MenuItem>Configuracion</MenuItem>
+              <MenuItem>salir</MenuItem>
+            </MenuList>
+          </Menu>
+          <Box
+            display="flex"
+            alignItems="center"
+            ml={["1em", "null", "null", "2em", "null", "null"]}
           >
-            Menú
-          </MenuButton>
-          <MenuList color="black">
-            <MenuItem onClick={openLoginModal}>Inicio</MenuItem>
-            <MenuItem>Configuracion</MenuItem>
-            <MenuItem>salir</MenuItem>
-          </MenuList>
-        </Menu>
-
-        <AiOutlineShoppingCart fontSize="1.8em" ml="3em" />
+            <AiOutlineShoppingCart fontSize="1.8em" />
+          </Box>
+        </Box>
       </Flex>
       {/* Primer modal: Iniciar Sesión */}
       <Modal isOpen={isLoginModalOpen} onClose={onLoginModalClose}>

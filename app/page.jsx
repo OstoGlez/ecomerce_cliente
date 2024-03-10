@@ -57,15 +57,13 @@ const cardStyles = {
 };
 
 function Home() {
-  return (
-    <>
-      <div style={containerStyles}>
-        {producto.map((product) => (
-          <ProductCard key={product.id} product={product} style={cardStyles} />
-        ))}
-      </div>
-    </>
-  );
+  return <></>;
 }
 
 export default Home;
+
+/*<div style={containerStyles}>
+        {producto.map((product) => (
+          <ProductCard key={product.id} product={product} style={cardStyles} />
+        ))}
+      </div>*/
