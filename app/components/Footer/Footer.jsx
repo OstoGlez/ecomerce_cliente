@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { Box, Divider, Text } from "@chakra-ui/react";
+import { Box, Divider, Text, Icon } from "@chakra-ui/react";
 import { footer, footerp } from "../Footer/Footer.js";
 import { MdFacebook, MdOutlineWhatsapp } from "react-icons/md";
 function Footer() {
@@ -24,10 +24,11 @@ function Footer() {
           ml={["1rem"]}
           w={["8rem", "null", "18rem", "null", "null", "40rem"]}
         />
-
-        <MdOutlineWhatsapp fontSize="1.2rem" />
-
-        <MdFacebook fontSize="1.2rem" />
+        <Icon
+          as={MdOutlineWhatsapp}
+          boxSize={[6, "null", 6, "null", "null", "3em"]}
+        />
+        <Icon as={MdFacebook} boxSize={[6, "null", 6, "null", "null", "3em"]} />
 
         <Divider
           orientation="horizontal"
@@ -40,7 +41,7 @@ function Footer() {
         display="flex"
         justifyContent="center"
         justifyItems="center"
-        mt={["0.7rem", "null", "0.7rem", "null", "null", "4.5rem"]}
+        mt={["0.7rem", "null", "0.5rem", "null", "null", "3rem"]}
       >
         <Text as="p" style={footerp}>
           &copy; 2024.

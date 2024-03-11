@@ -1,10 +1,11 @@
 "use client";
-import React, { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   Box,
   Text,
   Flex,
   IconButton,
+  Icon,
   Menu,
   MenuButton,
   MenuList,
@@ -22,7 +23,7 @@ import {
 } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import { AiOutlineShoppingCart } from "react-icons/ai";
-import Image from "next/image";
+import { customModal } from "./hederlayout.js";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -36,6 +37,8 @@ const Header = () => {
     onOpen: onRegisterModalOpen,
     onClose: onRegisterModalClose,
   } = useDisclosure();
+
+  const menuRef = useRef();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -55,40 +58,59 @@ const Header = () => {
     <Box as="header" bg="tropical.sky" color="white" p="1.5">
       <Flex justify="space-between" align="center">
         <Box ml={["2em", "null", "4em", "null", "null", "null"]}>
-          <Image src="/tropical.png" alt="Logo" width={100} height={100} />
+          <Text
+            fontSize={["1.2rem", "1.6rem", "1.5rem", "null", "null", "2.6rem"]}
+            style={{
+              fontFamily: "Segoe Print",
+              fontStyle: "italic",
+              fontWeight: "bold",
+              textShadow: "2px 1px 3px #1d1b1b",
+            }}
+          >
+            Tropical Shop
+          </Text>
         </Box>
-        <Box mr={["2em", "null", "4em", "null", "null", "null"]} display="flex">
-          <Menu isOpen={isOpen} onClose={() => setIsOpen(false)} ml="100px">
+
+        <Box mr={["1em", "null", "2em", "null", "null", "2em"]} display="flex">
+          <Box
+            display="flex"
+            alignItems="center"
+            mr={["1em", "null", "1.5em", "2em", "null", "null"]}
+          >
+            <Icon
+              as={AiOutlineShoppingCart}
+              boxSize={[8, "null", 8, "null", "null", "3em"]}
+            />
+          </Box>
+
+          <Menu isOpen={isOpen} onClose={() => setIsOpen(false)}>
             <MenuButton
               as={IconButton}
-              icon={<HamburgerIcon fontSize="30px" />}
+              icon={<HamburgerIcon fontSize="50px" />}
               color="white"
               onClick={toggleMenu}
               aria-label="Open Menu"
               variant="ghost"
-              _hover={{ bg: "#298fca6c" }}
+              _hover={{ bg: "rgba(0, 0, 0, 0.1)" }}
+              _focus={{ outline: "none" }}
+              _active={{ bg: "transparent" }}
+              onMouseLeave={(e) => e.target.blur()}
             >
               Menú
             </MenuButton>
-            <MenuList color="black">
-              <MenuItem onClick={openLoginModal}>Inicio</MenuItem>
-              <MenuItem>Configuracion</MenuItem>
-              <MenuItem>salir</MenuItem>
+            <MenuList color="black" background="#298fcaa">
+              <MenuItem onClick={openLoginModal} background="#298fca0">
+                Inicio
+              </MenuItem>
+              <MenuItem background="#298fca0">salir</MenuItem>
             </MenuList>
           </Menu>
-          <Box
-            display="flex"
-            alignItems="center"
-            ml={["1em", "null", "null", "2em", "null", "null"]}
-          >
-            <AiOutlineShoppingCart fontSize="1.8em" />
-          </Box>
         </Box>
       </Flex>
       {/* Primer modal: Iniciar Sesión */}
       <Modal isOpen={isLoginModalOpen} onClose={onLoginModalClose}>
         <ModalOverlay />
-        <ModalContent>
+        <ModalContent width="24em">
           <ModalHeader>Iniciar Sesión</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
@@ -119,7 +141,7 @@ const Header = () => {
       {/* Segundo modal: Registrarse */}
       <Modal isOpen={isRegisterModalOpen} onClose={onRegisterModalClose}>
         <ModalOverlay />
-        <ModalContent>
+        <ModalContent width="24em">
           <ModalHeader>Registrarse</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
