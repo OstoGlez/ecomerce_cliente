@@ -57,7 +57,15 @@ const cardStyles = {
 };
 
 function Home() {
-  return <></>;
+  return (
+    <>
+      <div style={containerStyles}>
+        {producto.map((product) => (
+          <ProductCard key={product.id} product={product} style={cardStyles} />
+        ))}
+      </div>
+    </>
+  );
 }
 
 export default Home;
