@@ -42,7 +42,7 @@ export const producto = [
   {
     id: 5,
     name: "Canela ",
-    status: "",
+    status: "NEW",
     description: " Pliegues y polvo ",
     price: 5,
     existence: 24,
