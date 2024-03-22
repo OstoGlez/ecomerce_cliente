@@ -98,7 +98,7 @@ const Header = () => {
             >
               Menú
             </MenuButton>
-            <MenuList color="black" background="#298fcaa">
+            <MenuList color="white" fontWeight="bold" background="#2196f3">
               <MenuItem onClick={openLoginModal} background="#298fca0">
                 Inicio
               </MenuItem>
