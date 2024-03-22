@@ -22,11 +22,15 @@ const ProductCard = ({ product }) => {
     setIsModalOpen(!isModalOpen);
   };
 
+  const handleToggleShoppingCart = () => {
+    alert("Tocado");
+  };
+
   return (
     <>
       <Box
         maxW={["42vw", "null", "30vw", "null", "null", "20vw"]}
-        maxH={["90vh", "null", "120vh", "null", "null", "50vh"]}
+        maxH={["90vh", "null", "120vh", "null", "null", "60vh"]}
         borderWidth="1px"
         borderRadius="lg"
         overflow="hidden"
@@ -40,21 +44,23 @@ const ProductCard = ({ product }) => {
 
         <Box p="2">
           <Box display="flex" flexDirection="row">
-            <Box ml={["0.2rem", "null", "null", "4em", "4em", "2em"]}>
+            <Box ml={["0.2rem", "null", "null", "null", "null", "1em"]}>
               <Badge
                 borderRadius="full"
                 px="1"
                 colorScheme="teal"
-                fontSize={["0.8em", "null", "null", "4em", "4em", "1.2em"]}
+                fontSize={["0.8em", "null", "null", "null", "null", "1em"]}
               >
                 {status}
               </Badge>
             </Box>
 
-            <Box display="flex" alignItems="center" ml="1rem">
-              <AiOutlineShoppingCart
-                fontSize={["2em", "null", "null", "null", "null", "7em"]}
-              />
+            <Box
+              display="flex"
+              alignItems="center"
+              ml={["4em", "null", "8em", "null", "4em", "14em"]}
+            >
+              <AiOutlineShoppingCart fontSize="2em" />
             </Box>
           </Box>
 
@@ -88,7 +94,7 @@ const ProductCard = ({ product }) => {
 
       <Modal isOpen={isModalOpen} onClose={handleToggleModal}>
         <ModalOverlay />
-        <ModalContent maxW={["90vw", "null", "90vw", "null", "null", "45vw"]}>
+        <ModalContent maxW={["90vw", "null", "90vw", "null", "null", "40vw"]}>
           <ModalHeader>{name}</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
@@ -96,9 +102,9 @@ const ProductCard = ({ product }) => {
             <Box
               display="flex"
               flexDirection="row"
-              justifyContent="space-around"
+              justifyContent="space-between"
             >
-              <Box ml={["1em", "null", "null", "null", "null", "1em"]}>
+              <Box ml={["1em", "null", "null", "null", "null", "2em"]}>
                 <Badge
                   display="flex"
                   borderRadius="2em"
@@ -108,8 +114,11 @@ const ProductCard = ({ product }) => {
                   {status}
                 </Badge>
               </Box>
-              <Box boxSize="1em"></Box>
-              <Box>
+
+              <Box
+                mr={["1vw", "null", "1vw", "null", "null", "3vw"]}
+                onClick={handleToggleShoppingCart}
+              >
                 <AiOutlineShoppingCart fontSize="3em" />
               </Box>
             </Box>
