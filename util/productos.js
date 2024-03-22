@@ -26,7 +26,7 @@ export const producto = [
     description: " Fresco y libre de Biotecnologia",
     price: 8,
     existence: 30,
-    image: "/Pollo.png",
+    image: "/pollo.png",
     alt: "Bolsa de Pollo",
   },
   {
