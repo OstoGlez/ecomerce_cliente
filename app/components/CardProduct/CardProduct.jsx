@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import {
   Box,
+  Button,
   Image,
   Badge,
   Text,
@@ -17,13 +18,20 @@ const ProductCard = ({ product }) => {
   const { id, name, status, description, price, existence, image, alt } =
     product;
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const [count, setCount] = useState(1);
   const handleToggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
 
-  const handleToggleShoppingCart = () => {
-    alert("Tocado");
+  const countUp = () => {
+    setCount(count + 1);
+  };
+
+  const countDown = () => {
+    if (count === 0) {
+      setCount(1);
+      setCount(count - 1);
+    }
   };
 
   return (
@@ -91,7 +99,7 @@ const ProductCard = ({ product }) => {
           </Box>
         </Box>
       </Box>
-
+      {/* Primer modal: Primer Plano tarjeta */}
       <Modal isOpen={isModalOpen} onClose={handleToggleModal}>
         <ModalOverlay />
         <ModalContent maxW={["90vw", "null", "90vw", "null", "null", "40vw"]}>
@@ -104,7 +112,11 @@ const ProductCard = ({ product }) => {
               flexDirection="row"
               justifyContent="space-between"
             >
-              <Box ml={["1em", "null", "null", "null", "null", "2em"]}>
+              <Box
+                ml={["1em", "null", "null", "null", "null", "2em"]}
+                display="flex"
+                alignItems="center"
+              >
                 <Badge
                   display="flex"
                   borderRadius="2em"
@@ -117,9 +129,29 @@ const ProductCard = ({ product }) => {
 
               <Box
                 mr={["1vw", "null", "1vw", "null", "null", "3vw"]}
-                onClick={handleToggleShoppingCart}
+                display="flex"
+                flexDirection="row"
+                alignItems="center"
               >
-                <AiOutlineShoppingCart fontSize="3em" />
+                <Button onClick={countUp}>
+                  <MdAdd fontSize="2em" />
+                </Button>
+
+                <Text ml="0.4em" fontSize="1.5em">
+                  {count}
+                </Text>
+                <Button ml="0.6em" onClick={countDown}>
+                  <MdRemove fontSize="2em" />
+                </Button>
+
+                <Button
+                  ml="2em"
+                  color="white"
+                  background="#0b60cf"
+                  _hover={{ bg: "#1d53e752", color: "#123fbbdf" }}
+                >
+                  Agregar
+                </Button>
               </Box>
             </Box>
             <Text fontSize="1.2rem">{description}</Text>
