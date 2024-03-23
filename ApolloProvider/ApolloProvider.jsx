@@ -8,7 +8,7 @@ import {
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import { usePathname } from "next/navigation";
-import InvoiceState from "../Context/invoice/InvoiceState.jsx";
+import InvoiceState from "../Context/Invoice/InvoiceState.js";
 import { ChakraProvider } from "@chakra-ui/react";
 import theme from "../theme.js";
 //https://cmr-montero-server-dev-mnfn.4.us-1.fl0.io/

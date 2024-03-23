@@ -1,6 +1,6 @@
 import React, { useReducer, useCallback } from "react";
-import InvoiceContext from "../invoice/InvoiceContext";
-import InvoiceReducer from "../invoice/InvoiceReducer";
+import InvoiceContext from "./InvoiceContext.js";
+import InvoiceReducer from "./InvoiceReducer.js";
 //import { CART_PRODUCTOS } from "../type";
 const InvoiceState = (props) => {
   // State de Pedidos
