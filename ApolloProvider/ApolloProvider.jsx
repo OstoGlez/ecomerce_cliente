@@ -7,8 +7,8 @@ import {
   ApolloLink,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
-import { usePathname } from "next/navigation";
-import InvoiceState from "../Context/Invoice/InvoiceState.js";
+
+import ComponentState from "@/Context/ComponentState/ComponentState.js";
 import { ChakraProvider } from "@chakra-ui/react";
 import theme from "../theme.js";
 //https://cmr-montero-server-dev-mnfn.4.us-1.fl0.io/
@@ -44,9 +44,9 @@ export function ApolloClientProvider({ children }) {
 
   return (
     <ChakraProvider theme={theme}>
-      <InvoiceState>
+      <ComponentState>
         <ApolloProvider client={apolloClient}>{children}</ApolloProvider>
-      </InvoiceState>
+      </ComponentState>
     </ChakraProvider>
   );
 }
