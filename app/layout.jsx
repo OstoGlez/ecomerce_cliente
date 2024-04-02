@@ -1,6 +1,6 @@
 import { Inter } from "next/font/google";
-import { ApolloClientProvider } from "@/ApolloProvider/ApolloProvider";
-import Layout from "./components/Layout/Layout";
+import { ApolloClientProvider } from "./ApolloProvider/ApolloProvider.jsx";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -12,9 +12,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <ApolloClientProvider>
-          <Layout>{children}</Layout>
-        </ApolloClientProvider>
+        <ApolloClientProvider>{children}</ApolloClientProvider>
       </body>
     </html>
   );
