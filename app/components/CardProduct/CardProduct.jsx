@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import {
   Box,
   Button,
@@ -12,27 +12,16 @@ import {
   ModalBody,
   ModalCloseButton,
 } from "@chakra-ui/react";
+import ComponentContext from "@/Context/ComponentState/ComponentContext";
 import { MdAdd, MdRemove } from "react-icons/md";
 import { AiOutlineShoppingCart } from "react-icons/ai";
+import { useDisclosure } from "@chakra-ui/react";
 const ProductCard = ({ product }) => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const { id, name, status, description, price, existence, image, alt } =
     product;
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [count, setCount] = useState(1);
-  const handleToggleModal = () => {
-    setIsModalOpen(!isModalOpen);
-  };
-
-  const countUp = () => {
-    setCount(count + 1);
-  };
-
-  const countDown = () => {
-    if (count === 0) {
-      setCount(1);
-      setCount(count - 1);
-    }
-  };
+  const { cartproductcounter, addSelectedProducts, countDown, countUp } =
+    useContext(ComponentContext);
 
   return (
     <>
@@ -44,7 +33,7 @@ const ProductCard = ({ product }) => {
         overflow="hidden"
         p="2"
         boxShadow="md"
-        onClick={handleToggleModal}
+        onClick={onOpen}
         cursor="pointer"
         transition="all 0.3s"
       >
@@ -100,7 +89,7 @@ const ProductCard = ({ product }) => {
         </Box>
       </Box>
       {/* Primer modal: Primer Plano tarjeta */}
-      <Modal isOpen={isModalOpen} onClose={handleToggleModal}>
+      <Modal isOpen={isOpen} onClose={onClose} {...product}>
         <ModalOverlay />
         <ModalContent maxW={["90vw", "null", "90vw", "null", "null", "40vw"]}>
           <ModalHeader>{name}</ModalHeader>
@@ -133,14 +122,14 @@ const ProductCard = ({ product }) => {
                 flexDirection="row"
                 alignItems="center"
               >
-                <Button onClick={countUp}>
+                <Button onClick={() => countUp(product)}>
                   <MdAdd fontSize="2em" />
                 </Button>
 
                 <Text ml="0.4em" fontSize="1.5em">
-                  {count}
+                  {cartproductcounter}
                 </Text>
-                <Button ml="0.6em" onClick={countDown}>
+                <Button ml="0.6em" onClick={() => countDown(product)}>
                   <MdRemove fontSize="2em" />
                 </Button>
 
@@ -149,6 +138,10 @@ const ProductCard = ({ product }) => {
                   color="white"
                   background="#0b60cf"
                   _hover={{ bg: "#1d53e752", color: "#123fbbdf" }}
+                  onClick={() => {
+                    addSelectedProducts(product);
+                    onClose();
+                  }}
                 >
                   Agregar
                 </Button>
@@ -168,94 +161,3 @@ const ProductCard = ({ product }) => {
 };
 
 export default ProductCard;
-
-/*import { Box, Image, Badge, Text } from "@chakra-ui/react";
-import React, { useState } from "react";
-
-const ProductCard = ({ product }) => {
-  const { id, name, status, description, price, existence, image, alt } =
-    product;
-  const [isMagnified, setIsMagnified] = useState(false);
-
-  const handleToggleMagnify = () => {
-    setIsMagnified(!isMagnified);
-  };
-
-  return (
-    <Box
-      maxW={
-        isMagnified
-          ? ["70vw", "null", "null", "null", "null", "50vw"]
-          : ["42vw", "null", "null", "null", "null", "20vw"]
-      }
-      maxH={
-        isMagnified
-          ? ["130vw", "null", "null", "null", "null", "80vw"]
-          : ["90vw", "null", "null", "null", "null", "50vw"]
-      }
-      borderWidth="1px"
-      borderRadius={isMagnified ? "none" : "lg"}
-      overflow="hidden"
-      p="2"
-      boxShadow="md"
-      onClick={handleToggleMagnify}
-      cursor="pointer"
-      transition="all 0.3s"
-    >
-      <Image src={image} alt={alt} />
-
-      <Box p="2">
-        <Box d="flex" alignItems="baseline">
-          <Badge borderRadius="full" px="1" colorScheme="teal" fontSize="0.8em">
-            {status}
-          </Badge>
-        </Box>
-
-        <Box
-          mt="1"
-          fontWeight="semibold"
-          as="h4"
-          lineHeight="tight"
-          isTruncated
-          fontSize="sm"
-        >
-          {name}
-        </Box>
-
-        <Box>
-          <Text fontSize="xs" color="gray.600">
-            {description}
-          </Text>
-        </Box>
-
-        <Box display="flex" mt="1" alignContent="center" flexDirection="row">
-          <Text fontWeight="bold" fontSize="sm" width="30%" mr="2">
-            {`$ ${price}`}
-          </Text>
-
-          <Text fontSize="xs" color="gray.600" width="60%">
-            {existence > 0 ? `${existence} disponibles` : "Agotado"}
-          </Text>
-        </Box>
-      </Box>
-    </Box>
-  );
-};
-
-export default ProductCard;
-//modal + -
- <Box marginLeft={["4rem", "null", "null", "null", "null", "9em"]}>
-                <MdRemove fontSize="2em" />
-              </Box>
-              <Box marginLeft="2rem">
-                <MdAdd fontSize="2em" />
-              </Box>
-//vista normal + -
-<Box ml={["1rem", "null", "null", "null", "null", "8em"]}>
-              <MdRemove />
-            </Box>
-            <Box ml={["1rem", "null", "null", "null", "null", "2em"]}>
-              <MdAdd />
-            </Box>
-
-*/

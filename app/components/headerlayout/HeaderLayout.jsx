@@ -1,8 +1,9 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef, useContext } from "react";
 import {
   Box,
   Text,
+  Badge,
   Flex,
   IconButton,
   Icon,
@@ -21,11 +22,13 @@ import {
   ModalCloseButton,
   ModalFooter,
 } from "@chakra-ui/react";
+import ComponentContext from "@/Context/ComponentState/ComponentContext";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { customModal } from "./hederlayout.js";
 
 const Header = () => {
+  const { reducecount } = useContext(ComponentContext);
   const [isOpen, setIsOpen] = useState(false);
   const {
     isOpen: isLoginModalOpen,
@@ -77,34 +80,50 @@ const Header = () => {
             alignItems="center"
             mr={["1em", "null", "1.5em", "2em", "null", "null"]}
           >
+            <Badge
+              display="flex"
+              borderRadius="full"
+              color="white"
+              px="0.45em"
+              background="rgba(236, 27, 27, 1)"
+              fontSize="0.8em"
+              position="absolute"
+              zIndex="2"
+              top="5px"
+              right="86px"
+            >
+              {reducecount}
+            </Badge>
             <Icon
               as={AiOutlineShoppingCart}
-              boxSize={[8, "null", 8, "null", "null", "3em"]}
+              boxSize={[8, "null", 8, "null", "null", "3.4em"]}
+              position="relative"
             />
           </Box>
-
-          <Menu isOpen={isOpen} onClose={() => setIsOpen(false)}>
-            <MenuButton
-              as={IconButton}
-              icon={<HamburgerIcon fontSize="50px" />}
-              color="white"
-              onClick={toggleMenu}
-              aria-label="Open Menu"
-              variant="ghost"
-              _hover={{ bg: "rgba(0, 0, 0, 0.1)" }}
-              _focus={{ outline: "none" }}
-              _active={{ bg: "transparent" }}
-              onMouseLeave={(e) => e.target.blur()}
-            >
-              Menú
-            </MenuButton>
-            <MenuList color="white" fontWeight="bold" background="#2196f3">
-              <MenuItem onClick={openLoginModal} background="#298fca0">
-                Inicio
-              </MenuItem>
-              <MenuItem background="#298fca0">salir</MenuItem>
-            </MenuList>
-          </Menu>
+          <Box display="flex" alignItems="center">
+            <Menu isOpen={isOpen} onClose={() => setIsOpen(false)}>
+              <MenuButton
+                as={IconButton}
+                icon={<HamburgerIcon fontSize="50px" />}
+                color="white"
+                onClick={toggleMenu}
+                aria-label="Open Menu"
+                variant="ghost"
+                _hover={{ bg: "rgba(0, 0, 0, 0.1)" }}
+                _focus={{ outline: "none" }}
+                _active={{ bg: "transparent" }}
+                onMouseLeave={(e) => e.target.blur()}
+              >
+                Menú
+              </MenuButton>
+              <MenuList color="white" fontWeight="bold" background="#2196f3">
+                <MenuItem onClick={openLoginModal} background="#298fca0">
+                  Inicio
+                </MenuItem>
+                <MenuItem background="#298fca0">salir</MenuItem>
+              </MenuList>
+            </Menu>
+          </Box>
         </Box>
       </Flex>
       {/* Primer modal: Iniciar Sesión */}

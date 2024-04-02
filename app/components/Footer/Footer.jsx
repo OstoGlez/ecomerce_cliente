@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { Box, Divider, Text, Icon } from "@chakra-ui/react";
-import { footer, footerp } from "../Footer/Footer.js";
+import { footer, footerp } from "./Footer.js";
 import { MdFacebook, MdOutlineWhatsapp } from "react-icons/md";
 function Footer() {
   return (

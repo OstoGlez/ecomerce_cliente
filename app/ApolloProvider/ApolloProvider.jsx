@@ -7,10 +7,10 @@ import {
   ApolloLink,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
-import { usePathname } from "next/navigation";
-import InvoiceState from "../Context/invoice/InvoiceState.jsx";
+import Layout from "../components/Layout/Layout.jsx";
+import ComponentState from "@/Context/ComponentState/ComponentState.js";
 import { ChakraProvider } from "@chakra-ui/react";
-import theme from "../theme.js";
+import theme from "../../theme.js";
 //https://cmr-montero-server-dev-mnfn.4.us-1.fl0.io/
 //http://localhost:8080
 //https://api.lahabanerashop.com
@@ -43,10 +43,12 @@ export function ApolloClientProvider({ children }) {
   });
 
   return (
-    <ChakraProvider theme={theme}>
-      <InvoiceState>
-        <ApolloProvider client={apolloClient}>{children}</ApolloProvider>
-      </InvoiceState>
-    </ChakraProvider>
+    <ComponentState>
+      <ChakraProvider theme={theme}>
+        <ApolloProvider client={apolloClient}>
+          <Layout>{children}</Layout>
+        </ApolloProvider>
+      </ChakraProvider>
+    </ComponentState>
   );
 }
