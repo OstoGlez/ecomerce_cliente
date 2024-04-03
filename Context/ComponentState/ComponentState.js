@@ -33,6 +33,7 @@ const ComponentState = (props) => {
   };
   //Resetea el contador cuando se añade un producto
   const resetCount = () => {
+    console.log("reset");
     dispatch({
       type: "PRODUCT_RESET_COUNTER",
       payload: 0,
@@ -81,6 +82,7 @@ const ComponentState = (props) => {
         countUp,
         countDown,
         addSelectedProducts,
+        resetCount,
         reducecount,
       }}
     >

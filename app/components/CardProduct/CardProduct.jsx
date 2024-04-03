@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import {
   Box,
   Button,
@@ -20,9 +20,17 @@ const ProductCard = ({ product }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { id, name, status, description, price, existence, image, alt } =
     product;
-  const { cartproductcounter, addSelectedProducts, countDown, countUp } =
-    useContext(ComponentContext);
 
+  const {
+    cartproductcounter,
+    addSelectedProducts,
+    countDown,
+    countUp,
+    resetCount,
+  } = useContext(ComponentContext);
+  useEffect(() => {
+    resetCount();
+  }, [isOpen]);
   return (
     <>
       <Box
