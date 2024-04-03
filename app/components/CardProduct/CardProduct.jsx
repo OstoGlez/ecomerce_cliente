@@ -122,14 +122,14 @@ const ProductCard = ({ product }) => {
                 flexDirection="row"
                 alignItems="center"
               >
-                <Button onClick={() => countUp(product)}>
+                <Button onClick={() => countUp()}>
                   <MdAdd fontSize="2em" />
                 </Button>
 
                 <Text ml="0.4em" fontSize="1.5em">
                   {cartproductcounter}
                 </Text>
-                <Button ml="0.6em" onClick={() => countDown(product)}>
+                <Button ml="0.6em" onClick={() => countDown()}>
                   <MdRemove fontSize="2em" />
                 </Button>
 
