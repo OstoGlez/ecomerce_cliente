@@ -16,14 +16,14 @@ const ComponentState = (props) => {
   //+++++++++++ Codigo de estados para el componente CardProduct ++++++++++++++++
 
   //let count = state.cartproductcounter;
-  const countUp = (product) => {
+  const countUp = () => {
     dispatch({
       type: "PRODUCT_INCREMENT_COUNTER",
       payload: state.cartproductcounter + 1,
     });
   };
 
-  const countDown = (product) => {
+  const countDown = () => {
     const count = state.cartproductcounter;
     const decrement = count > 1 ? count - 1 : 1;
     dispatch({
@@ -31,7 +31,7 @@ const ComponentState = (props) => {
       payload: decrement,
     });
   };
-
+  //Resetea el contador cuando se añade un producto
   const resetCount = () => {
     dispatch({
       type: "PRODUCT_RESET_COUNTER",
@@ -41,17 +41,20 @@ const ComponentState = (props) => {
 
   const addSelectedProducts = (product) => {
     const { id, name } = product;
+    // Se toma muestra del contador de cantidad de producto
     const count = state.cartproductcounter;
+    // cada vez que se selecciona un producto se comprueba si ya existe en el array de productos seleccionados
     const foundItem = state.productSelectedByCustomer.find(
       (item) => item.id === id
     );
+    //
     const countItem = foundItem ? foundItem : null;
     const payloadCart = {
       id,
       name,
       count: countItem ? countItem.count + count : count,
     };
-
+    console.log(payloadCart);
     dispatch({
       type: "PRODUCTS_SELECTED_BY_CUSTOMER",
       payload: !countItem
@@ -64,9 +67,6 @@ const ComponentState = (props) => {
   };
 
   const reducecount = state.productSelectedByCustomer.reduce((acum, actual) => {
-    console.log("Valor de acum:", acum);
-    console.log("Valor de actual:", actual.count);
-    console.log("Valor de la devolucion:", acum + actual.count);
     return acum + actual.count;
   }, 0);
 
