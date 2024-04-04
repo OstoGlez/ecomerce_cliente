@@ -35,6 +35,7 @@ import {
 import ComponentContext from "@/Context/ComponentState/ComponentContext";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import { AiOutlineShoppingCart } from "react-icons/ai";
+import ModalTable from "../ModalTable/ModalTable";
 
 const Header = () => {
   const { reducecount } = useContext(ComponentContext);
@@ -149,44 +150,7 @@ const Header = () => {
                 </ModalHeader>
                 <ModalCloseButton />
                 <ModalBody>
-                  <TableContainer>
-                    <Table variant="striped" colorScheme="teal">
-                      <TableCaption>
-                        Imperial to metric conversion factors
-                      </TableCaption>
-                      <Thead>
-                        <Tr>
-                          <Th>To convert</Th>
-                          <Th>into</Th>
-                          <Th isNumeric>multiply by</Th>
-                        </Tr>
-                      </Thead>
-                      <Tbody>
-                        <Tr>
-                          <Td>inches</Td>
-                          <Td>millimetres (mm)</Td>
-                          <Td isNumeric>25.4</Td>
-                        </Tr>
-                        <Tr>
-                          <Td>feet</Td>
-                          <Td>centimetres (cm)</Td>
-                          <Td isNumeric>30.48</Td>
-                        </Tr>
-                        <Tr>
-                          <Td>yards</Td>
-                          <Td>metres (m)</Td>
-                          <Td isNumeric>0.91444</Td>
-                        </Tr>
-                      </Tbody>
-                      <Tfoot>
-                        <Tr>
-                          <Th>To convert</Th>
-                          <Th>into</Th>
-                          <Th isNumeric>multiply by</Th>
-                        </Tr>
-                      </Tfoot>
-                    </Table>
-                  </TableContainer>
+                  <ModalTable />
                 </ModalBody>
                 <ModalFooter>
                   <Button onClick={onClosec}>Close</Button>
