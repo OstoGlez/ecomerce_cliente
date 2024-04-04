@@ -6,7 +6,7 @@ import ComponentReducer from "./ComponentReducer";
 const ComponentState = (props) => {
   // State de Pedidos
   const initialState = {
-    cartproductcounter: 0,
+    cartproductcounter: 1,
     productSelectedByCustomer: [],
     totalcountProductSelct: 0,
   };
@@ -36,7 +36,7 @@ const ComponentState = (props) => {
     console.log("reset");
     dispatch({
       type: "PRODUCT_RESET_COUNTER",
-      payload: 0,
+      payload: 1,
     });
   };
 
