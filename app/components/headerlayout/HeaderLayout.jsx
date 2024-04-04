@@ -4,6 +4,7 @@ import {
   Box,
   Text,
   Badge,
+  Image,
   Flex,
   IconButton,
   Icon,
@@ -25,11 +26,16 @@ import {
 import ComponentContext from "@/Context/ComponentState/ComponentContext";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import { AiOutlineShoppingCart } from "react-icons/ai";
-import { customModal } from "./hederlayout.js";
 
 const Header = () => {
   const { reducecount } = useContext(ComponentContext);
   const [isOpen, setIsOpen] = useState(false);
+  const [scrollBehavior, setScrollBehavior] = useState("inside");
+  const {
+    isOpen: isOpenc,
+    onOpen: onOpenc,
+    onClose: onClosec,
+  } = useDisclosure();
   const {
     isOpen: isLoginModalOpen,
     onOpen: onLoginModalOpen,
@@ -56,7 +62,7 @@ const Header = () => {
     onRegisterModalOpen();
     onLoginModalClose();
   };
-
+  const btnRef = useRef(null);
   return (
     <Box as="header" bg="tropical.sky" color="white" p="1.5">
       <Flex justify="space-between" align="center">
@@ -79,6 +85,8 @@ const Header = () => {
             display="flex"
             alignItems="center"
             mr={["1em", "null", "1.5em", "2em", "null", "null"]}
+            onClick={onOpenc}
+            ref={btnRef}
           >
             <Badge
               display="flex"
@@ -99,6 +107,44 @@ const Header = () => {
               boxSize={[8, "null", 8, "null", "null", "3.4em"]}
               position="relative"
             />
+            {/*Modal para mostrar lista de productos seleccionados en la parte superior*/}
+            <Modal
+              onClose={onClosec}
+              isOpen={isOpenc}
+              scrollBehavior="inside"
+              finalFocusRef={btnRef}
+            >
+              <ModalOverlay />
+              <ModalContent bg="#ffffff">
+                <ModalHeader>
+                  <Box
+                    display="flex"
+                    flexDirection="row"
+                    alignItems="center"
+                    justifyContent="flex-start"
+                  >
+                    <Box ml="0">
+                      <Image
+                        src="/carritoazul.png"
+                        alt="alt"
+                        w="2.3em"
+                        ml="1em"
+                      />
+                    </Box>
+                    <Box>
+                      <Text fontSize="1em" ml="1em">
+                        Productos en el Carrito
+                      </Text>
+                    </Box>
+                  </Box>
+                </ModalHeader>
+                <ModalCloseButton />
+                <ModalBody></ModalBody>
+                <ModalFooter>
+                  <Button onClick={onClosec}>Close</Button>
+                </ModalFooter>
+              </ModalContent>
+            </Modal>
           </Box>
           <Box display="flex" alignItems="center">
             <Menu isOpen={isOpen} onClose={() => setIsOpen(false)}>
