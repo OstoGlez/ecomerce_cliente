@@ -16,6 +16,7 @@ import ComponentContext from "@/Context/ComponentState/ComponentContext";
 import { MdAdd, MdRemove } from "react-icons/md";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { useDisclosure } from "@chakra-ui/react";
+
 const ProductCard = ({ product }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { id, name, status, description, price, existence, image, alt } =
