@@ -9,6 +9,7 @@ const ComponentState = (props) => {
     cartproductcounter: 1,
     productSelectedByCustomer: [],
     totalcountProductSelct: 0,
+    totalcost: 0,
   };
 
   const [state, dispatch] = useReducer(ComponentReducer, initialState);
@@ -41,7 +42,7 @@ const ComponentState = (props) => {
   };
 
   const addSelectedProducts = (product) => {
-    const { id, name } = product;
+    const { id, name, price, image } = product;
     // Se toma muestra del contador de cantidad de producto
     const count = state.cartproductcounter;
     // cada vez que se selecciona un producto se comprueba si ya existe en el array de productos seleccionados
@@ -54,6 +55,9 @@ const ComponentState = (props) => {
       id,
       name,
       count: countItem ? countItem.count + count : count,
+      image,
+      price,
+      partial: price * (countItem ? countItem.count + count : count),
     };
     console.log(payloadCart);
     dispatch({
@@ -64,8 +68,13 @@ const ComponentState = (props) => {
             e.id != payloadCart.id ? e : { ...e, count: payloadCart.count }
           ),
     });
+
     resetCount();
   };
+
+  const totalCosto = state.productSelectedByCustomer.reduce((acum, actual) => {
+    return acum + actual.partial;
+  }, 0);
 
   const reducecount = state.productSelectedByCustomer.reduce((acum, actual) => {
     return acum + actual.count;
@@ -84,6 +93,7 @@ const ComponentState = (props) => {
         addSelectedProducts,
         resetCount,
         reducecount,
+        totalCosto,
       }}
     >
       {props.children}
