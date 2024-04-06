@@ -38,10 +38,12 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 import ModalTable from "../ModalTable/ModalTable";
 import ReCAPTCHA from "react-google-recaptcha";
 
-const Header = () => {
-  const { reducecount } = useContext(ComponentContext);
+const Header = ({ props }) => {
+  const { reducecount, productSelectedByCustomer, totalCosto } =
+    useContext(ComponentContext);
   const [isOpen, setIsOpen] = useState(false);
   const [scrollBehavior, setScrollBehavior] = useState("inside");
+
   const {
     isOpen: isOpenc,
     onOpen: onOpenc,
@@ -154,8 +156,51 @@ const Header = () => {
                 </ModalHeader>
                 <ModalCloseButton />
                 <ModalBody>
-                  <ModalTable />
+                  <TableContainer>
+                    <Table variant="striped" colorScheme="teal">
+                      <TableCaption>
+                        Listado de Productos seleccionados
+                      </TableCaption>
+                      <Thead>
+                        <Tr>
+                          <Th fontSize="0.6em">Producto</Th>
+                          <Th fontSize="0.6em">Nombre</Th>
+                          <Th isNumeric fontSize="0.6em">
+                            Precio
+                          </Th>
+                          <Th isNumeric fontSize="0.6em">
+                            Cantidad
+                          </Th>
+                          <Th isNumeric fontSize="0.6em">
+                            Parcial
+                          </Th>
+                        </Tr>
+                      </Thead>
+                      <Tbody>
+                        {productSelectedByCustomer.map((product) => {
+                          return (
+                            <ModalTable key={product.id} product={product} />
+                          );
+                        })}
+                      </Tbody>
+                      <Tfoot>
+                        <Tr>
+                          <Th display="flex" alignContent="flex-end">
+                            <Box>
+                              <Text fontWeight="bold">
+                                Total
+                                <Badge ml="1" colorScheme="green">
+                                  {`${totalCosto} $`}
+                                </Badge>
+                              </Text>
+                            </Box>
+                          </Th>
+                        </Tr>
+                      </Tfoot>
+                    </Table>
+                  </TableContainer>
                 </ModalBody>
+
                 <ModalFooter>
                   <Button onClick={onClosec}>Close</Button>
                 </ModalFooter>
@@ -209,6 +254,7 @@ const Header = () => {
               ¿No tienes cuenta? Regístrate
             </Text>
           </ModalBody>
+          {}
           <ModalFooter>
             <Button colorScheme="blue" mr={3} onClick={onLoginModalClose}>
               Iniciar Sesión
