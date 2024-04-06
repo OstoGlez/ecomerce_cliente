@@ -41,35 +41,37 @@ function ModalTable() {
           <TableCaption>Listado de Productos seleccionados</TableCaption>
 
           <Tbody>
-            <Tr>
-              <Td>
-                <Image src="/canela.png" alt="alt" w="5em" />
+            <Tr fontSize="0.8em">
+              <Td p="0">
+                <Image
+                  src="/canela.png"
+                  alt="alt"
+                  w={["5em", "null", "6em", "null", "null", "5em"]}
+                />
               </Td>
-              <Td>Canela en Rama</Td>
-              <Td isNumeric>12.00</Td>
-            </Tr>
-            <Tr>
-              <Td>
-                <Image src="/aceite.png" alt="alt" w="5em" />
+
+              <Td p="0"> Canela en Rama</Td>
+
+              <Td isNumeric pt="0" pb="0" pl="0">
+                12.00
               </Td>
-              <Td>Aceite de Comer</Td>
-              <Td isNumeric>19.00</Td>
-            </Tr>
-            <Tr>
-              <Td>
-                <Image src="/salchichas.png" alt="alt" w="5em" />
-              </Td>
-              <Td>Salchichas de Cerdo</Td>
-              <Td isNumeric>14.00</Td>
-            </Tr>
-            <Tr>
-              <Td>
-                <Image src="/pudin.png" alt="alt" w="5em" />
-              </Td>
-              <Td>Pudin de Yogurt</Td>
-              <Td isNumeric>7.00</Td>
+              <Td p="0">Cantidad: 3</Td>
             </Tr>
           </Tbody>
+          <Tfoot>
+            <Tr>
+              <Th display="flex" alignContent="flex-end">
+                <Box>
+                  <Text fontWeight="bold">
+                    Total
+                    <Badge ml="1" colorScheme="green">
+                      New
+                    </Badge>
+                  </Text>
+                </Box>
+              </Th>
+            </Tr>
+          </Tfoot>
         </Table>
       </TableContainer>
     </>
