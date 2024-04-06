@@ -36,6 +36,7 @@ import ComponentContext from "@/Context/ComponentState/ComponentContext";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import ModalTable from "../ModalTable/ModalTable";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const Header = () => {
   const { reducecount } = useContext(ComponentContext);
@@ -58,7 +59,10 @@ const Header = () => {
   } = useDisclosure();
 
   const menuRef = useRef();
-
+  const captcha = useRef(null);
+  const handleCaptcha = () => {
+    console.log(captcha.current.getValue());
+  };
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
@@ -225,6 +229,11 @@ const Header = () => {
             <Input placeholder="Correo electrónico" />
             <Input placeholder="Contraseña" type="password" mt={4} />
             <Input placeholder="Confirmar contraseña" type="password" mt={4} />
+            <ReCAPTCHA
+              ref={captcha}
+              sitekey="6Let2bEpAAAAABYLzMFV1c5aZ6MeuemNskDhwZG6"
+              onChange={handleCaptcha}
+            />
           </ModalBody>
           <ModalFooter>
             <Button colorScheme="blue" mr={3} onClick={onRegisterModalClose}>
