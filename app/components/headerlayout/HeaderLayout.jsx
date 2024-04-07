@@ -23,12 +23,10 @@ import {
   ModalCloseButton,
   ModalFooter,
   Table,
-  TableCaption,
   Thead,
   Tr,
   Th,
   Tbody,
-  Td,
   Tfoot,
   TableContainer,
 } from "@chakra-ui/react";
@@ -38,12 +36,10 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 import ModalTable from "../ModalTable/ModalTable";
 import ReCAPTCHA from "react-google-recaptcha";
 
-const Header = ({ props }) => {
+const Header = () => {
   const { reducecount, productSelectedByCustomer, totalCosto } =
     useContext(ComponentContext);
   const [isOpen, setIsOpen] = useState(false);
-  const [scrollBehavior, setScrollBehavior] = useState("inside");
-
   const {
     isOpen: isOpenc,
     onOpen: onOpenc,
@@ -127,8 +123,9 @@ const Header = ({ props }) => {
             <Modal
               onClose={onClosec}
               isOpen={isOpenc}
-              scrollBehavior="inside"
+              scrollBehavior="outside"
               finalFocusRef={btnRef}
+              size={["sm", "null", "2xl", "null", "null", "3xl"]}
             >
               <ModalOverlay />
               <ModalContent bg="#ffffff">
@@ -158,20 +155,69 @@ const Header = ({ props }) => {
                 <ModalBody>
                   <TableContainer>
                     <Table variant="striped" colorScheme="teal">
-                      <TableCaption>
-                        Listado de Productos seleccionados
-                      </TableCaption>
                       <Thead>
                         <Tr>
-                          <Th fontSize="0.6em">Producto</Th>
-                          <Th fontSize="0.6em">Nombre</Th>
-                          <Th isNumeric fontSize="0.6em">
+                          <Th
+                            fontSize={[
+                              "0.7em",
+                              "null",
+                              "0.7em",
+                              "null",
+                              "null",
+                              "1em",
+                            ]}
+                          >
+                            Producto
+                          </Th>
+                          <Th
+                            fontSize={[
+                              "0.7em",
+                              "null",
+                              "0.7em",
+                              "null",
+                              "null",
+                              "1em",
+                            ]}
+                          >
+                            Nombre
+                          </Th>
+                          <Th
+                            fontSize={[
+                              "0.7em",
+                              "null",
+                              "0.7em",
+                              "null",
+                              "null",
+                              "1em",
+                            ]}
+                            isNumeric
+                          >
                             Precio
                           </Th>
-                          <Th isNumeric fontSize="0.6em">
+                          <Th
+                            fontSize={[
+                              "0.7em",
+                              "null",
+                              "0.7em",
+                              "null",
+                              "null",
+                              "1em",
+                            ]}
+                            isNumeric
+                          >
                             Cantidad
                           </Th>
-                          <Th isNumeric fontSize="0.6em">
+                          <Th
+                            fontSize={[
+                              "0.7em",
+                              "null",
+                              "0.7em",
+                              "null",
+                              "null",
+                              "1em",
+                            ]}
+                            isNumeric
+                          >
                             Parcial
                           </Th>
                         </Tr>
@@ -186,14 +232,12 @@ const Header = ({ props }) => {
                       <Tfoot>
                         <Tr>
                           <Th display="flex" alignContent="flex-end">
-                            <Box>
-                              <Text fontWeight="bold">
-                                Total
-                                <Badge ml="1" colorScheme="green">
-                                  {`${totalCosto} $`}
-                                </Badge>
-                              </Text>
-                            </Box>
+                            <Text fontWeight="bold">
+                              Total
+                              <Badge ml="1" colorScheme="green">
+                                {`${totalCosto} $`}
+                              </Badge>
+                            </Text>
                           </Th>
                         </Tr>
                       </Tfoot>
@@ -296,3 +340,83 @@ const Header = ({ props }) => {
 };
 
 export default Header;
+
+/*
+<Modal
+onClose={onClosec}
+isOpen={isOpenc}
+scrollBehavior="inside"
+finalFocusRef={btnRef}
+size={["sm", "null", "xl", "null", "null", "xl"]}
+>
+<ModalOverlay />
+<ModalContent bg="#ffffff">
+  <ModalHeader>
+    <Box
+      display="flex"
+      flexDirection="row"
+      alignItems="center"
+      justifyContent="flex-start"
+    >
+      <Box ml="0">
+        <Image
+          src="/carritoazul.png"
+          alt="alt"
+          w="2.3em"
+          ml="1em"
+        />
+      </Box>
+      <Box>
+        <Text fontSize="1em" ml="1em">
+          Productos en el Carrito
+        </Text>
+      </Box>
+    </Box>
+  </ModalHeader>
+  <ModalCloseButton />
+  <ModalBody>
+    <TableContainer>
+      <Table variant="striped" colorScheme="teal">
+        <Thead>
+          <Tr mt="0">
+            <Th fontSize="0.6em">Producto</Th>
+            <Th fontSize="0.6em">Nombre</Th>
+            <Th isNumeric fontSize="0.6em">
+              Precio
+            </Th>
+            <Th isNumeric fontSize="0.6em">
+              Cantidad
+            </Th>
+            <Th isNumeric fontSize="0.6em">
+              Parcial
+            </Th>
+          </Tr>
+        </Thead>
+        <Tbody>
+          {productSelectedByCustomer.map((product) => {
+            return (
+              <ModalTable key={product.id} product={product} />
+            );
+          })}
+        </Tbody>
+        <Tfoot>
+          <Tr>
+            <Th display="flex" alignContent="flex-end">
+              <Text fontWeight="bold">
+                Total
+                <Badge ml="1" colorScheme="green">
+                  {`${totalCosto} $`}
+                </Badge>
+              </Text>
+            </Th>
+          </Tr>
+        </Tfoot>
+      </Table>
+    </TableContainer>
+  </ModalBody>
+
+  <ModalFooter>
+    <Button onClick={onClosec}>Close</Button>
+  </ModalFooter>
+</ModalContent>
+</Modal>*/
