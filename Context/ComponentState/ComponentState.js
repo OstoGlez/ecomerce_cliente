@@ -72,6 +72,16 @@ const ComponentState = (props) => {
     resetCount();
   };
 
+  const removProdCart = (idselect) => {
+    const Product = state.productSelectedByCustomer.filter(
+      (objeto) => objeto.id !== idselect
+    );
+    dispatch({
+      type: "PRODUCTS_SELECTED_BY_CUSTOMER",
+      payload: Product,
+    });
+  };
+
   const totalCosto = state.productSelectedByCustomer.reduce((acum, actual) => {
     return acum + actual.partial;
   }, 0);
@@ -92,8 +102,9 @@ const ComponentState = (props) => {
         countDown,
         addSelectedProducts,
         resetCount,
+        removProdCart,
         reducecount,
-        totalCosto,
+        totalCosto: totalCosto.toFixed(2),
       }}
     >
       {props.children}
