@@ -37,6 +37,7 @@ import ModalTable from "../ModalTable/ModalTable";
 import ReCAPTCHA from "react-google-recaptcha";
 
 const Header = () => {
+  console.log(process.env.NEXT_PUBLIC_RECAPTCHA_WEBSITE_KEY);
   const { reducecount, productSelectedByCustomer, totalCosto } =
     useContext(ComponentContext);
   const [isOpen, setIsOpen] = useState(false);
