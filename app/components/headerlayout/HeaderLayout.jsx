@@ -56,7 +56,6 @@ const Header = () => {
     onClose: onRegisterModalClose,
   } = useDisclosure();
 
-  const menuRef = useRef();
   const captcha = useRef(null);
   const handleCaptcha = () => {
     console.log(captcha.current.getValue());
@@ -321,7 +320,7 @@ const Header = () => {
             <Input placeholder="Confirmar contraseña" type="password" mt={4} />
             <ReCAPTCHA
               ref={captcha}
-              sitekey="6Let2bEpAAAAABYLzMFV1c5aZ6MeuemNskDhwZG6"
+              sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_WEBSITE_KEY}
               onChange={handleCaptcha}
             />
           </ModalBody>

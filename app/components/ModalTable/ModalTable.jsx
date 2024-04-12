@@ -10,6 +10,14 @@ function ModalTable({ product }) {
     console.log("Removido");
     removProdCart(id);
   };
+  const add = () => {
+    console.log("Agregar");
+    addProdCart(id);
+  };
+  const sustrsubtractaer = () => {
+    console.log("Agregar");
+    subtractProdCart(id);
+  };
 
   return (
     <>
@@ -25,10 +33,10 @@ function ModalTable({ product }) {
         <Td>{`${price} $`}</Td>
         <Td>{count}</Td>
         <Td>{`${partial} $`}</Td>
-        <Td>
+        <Td  onClick={add}>
           <BsCartPlus fontSize="2em" color="#0842c0d2" />
         </Td>
-        <Td>
+        <Td onClick={sustraer}>
           <BsCartDash fontSize="2em" color="#0842c0d2" />
         </Td>
         <Td onClick={remove}>
