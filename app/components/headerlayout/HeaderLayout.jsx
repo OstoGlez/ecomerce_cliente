@@ -1,6 +1,9 @@
 "use client";
 import { useState, useRef, useContext } from "react";
+import { useMutation } from "@apollo/client";
+import { CREATE_USER } from "../../../Querys/querys.js";
 import {
+  useToast,
   Box,
   Text,
   Badge,
@@ -35,12 +38,13 @@ import { HamburgerIcon } from "@chakra-ui/icons";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import ModalTable from "../ModalTable/ModalTable";
 import ReCAPTCHA from "react-google-recaptcha";
+import ModalRegister from "./ModalRegister.jsx";
 
 const Header = () => {
-  console.log(process.env.NEXT_PUBLIC_RECAPTCHA_WEBSITE_KEY);
   const { reducecount, productSelectedByCustomer, totalCosto } =
     useContext(ComponentContext);
   const [isOpen, setIsOpen] = useState(false);
+  const toast = useToast();
   const {
     isOpen: isOpenc,
     onOpen: onOpenc,
@@ -74,6 +78,7 @@ const Header = () => {
     onRegisterModalOpen();
     onLoginModalClose();
   };
+
   const btnRef = useRef(null);
   return (
     <Box as="header" bg="tropical.sky" color="white" p="1.5">
@@ -316,9 +321,7 @@ const Header = () => {
           <ModalHeader>Registrarse</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Input placeholder="Correo electrónico" />
-            <Input placeholder="Contraseña" type="password" mt={4} />
-            <Input placeholder="Confirmar contraseña" type="password" mt={4} />
+            <ModalRegister />
             <ReCAPTCHA
               ref={captcha}
               sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_WEBSITE_KEY}
@@ -326,7 +329,21 @@ const Header = () => {
             />
           </ModalBody>
           <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onRegisterModalClose}>
+            <Button
+              colorScheme="blue"
+              mr={3}
+              onClick={() => {
+                onRegisterModalClose;
+                toast({
+                  title: "Notificacion de Registro.",
+                  description: "Su cuenta a sido creada",
+                  position: "top-right",
+                  status: "success",
+                  duration: 9000,
+                  isClosable: true,
+                });
+              }}
+            >
               Registrarse
             </Button>
             <Button variant="ghost" onClick={onRegisterModalClose}>
@@ -420,3 +437,14 @@ size={["sm", "null", "xl", "null", "null", "xl"]}
   </ModalFooter>
 </ModalContent>
 </Modal>*/
+
+/* <ModalBody>
+            <Input placeholder="Correo electrónico" />
+            <Input placeholder="Contraseña" type="password" mt={4} />
+            <Input placeholder="Confirmar contraseña" type="password" mt={4} />
+            <ReCAPTCHA
+              ref={captcha}
+              sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_WEBSITE_KEY}
+              onChange={handleCaptcha}
+            />
+          </ModalBody> */
