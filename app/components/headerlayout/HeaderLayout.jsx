@@ -323,14 +323,13 @@ const Header = () => {
           <ModalCloseButton />
           <ModalBody>
             <ModalRegister />
-            <ReCAPTCHA
+            {/*<ReCAPTCHA
               ref={captcha}
               sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_WEBSITE_KEY}
               onChange={handleCaptcha}
-            />
+            />*/}
           </ModalBody>
           <ModalFooter>
-           
             <Button variant="ghost" onClick={onRegisterModalClose}>
               Cancelar
             </Button>
