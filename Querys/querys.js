@@ -1,4 +1,4 @@
-import { gql, useQuery, useMutation } from "@apollo/client";
+import { gql } from "@apollo/client";
 
 // ++++++++++++++++++++++++  Querys  +++++++++++++++++++++++++++++
 
@@ -17,7 +17,6 @@ const CREATE_USER = gql`
         benefited {
           fullname
           address
-          email
           phone
         }
         accessHistory {
@@ -26,13 +25,6 @@ const CREATE_USER = gql`
           accessCount
         }
         create
-      }
-      RecaptchaResponse {
-        success
-        score
-        action
-        challenge_ts
-        hostname
       }
     }
   }

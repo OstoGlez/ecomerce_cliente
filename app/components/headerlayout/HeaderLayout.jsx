@@ -62,6 +62,7 @@ const Header = () => {
   } = useDisclosure();
 
   const captcha = useRef(null);
+
   const handleCaptcha = () => {
     console.log(captcha.current.getValue());
   };
@@ -329,23 +330,7 @@ const Header = () => {
             />
           </ModalBody>
           <ModalFooter>
-            <Button
-              colorScheme="blue"
-              mr={3}
-              onClick={() => {
-                onRegisterModalClose;
-                toast({
-                  title: "Notificacion de Registro.",
-                  description: "Su cuenta a sido creada",
-                  position: "top-right",
-                  status: "success",
-                  duration: 9000,
-                  isClosable: true,
-                });
-              }}
-            >
-              Registrarse
-            </Button>
+           
             <Button variant="ghost" onClick={onRegisterModalClose}>
               Cancelar
             </Button>
