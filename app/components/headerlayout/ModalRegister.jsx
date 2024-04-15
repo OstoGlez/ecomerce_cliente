@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useMutation } from "@apollo/client";
+import { useMutation, gql } from "@apollo/client";
 import { CREATE_USER } from "../../../Querys/querys.js";
 import {
   FormControl,
@@ -10,11 +10,13 @@ import {
   Center,
   Box,
   Container,
+  useToast,
 } from "@chakra-ui/react";
 import { Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 
-function ModalRegister() {
+function ModalRegister({ ...props }) {
+  const toast = useToast();
   const [mensaje, GuardarMensaje] = useState({});
   const validationSchema = Yup.object().shape({
     fullname: Yup.string().required("Nombre y apellidos es obligatorio"),
@@ -25,11 +27,12 @@ function ModalRegister() {
   });
   const [createUser] = useMutation(CREATE_USER);
   const mostrarMensaje = () => {
+    console.log("se ejecuto el toast");
     toast({
-      title: "Notificacion de Registro.",
-      description: { mensaje },
+      title: "Crear Usuario",
+      description: "El usuario ha sido creado exitosamente ",
       position: "top-right",
-      status: "success",
+      status: success,
       duration: 9000,
       isClosable: true,
     });
@@ -55,7 +58,6 @@ function ModalRegister() {
           onSubmit={async (values, actions) => {
             const { setSubmitting, resetForm } = actions;
             const { fullname, phone, email, password, address } = values;
-            console.log(values);
 
             try {
               const { data } = await createUser({
@@ -66,30 +68,39 @@ function ModalRegister() {
                     email,
                     password,
                     address,
-                    captcha_token,
                     benefited: [
                       {
-                        fullname: "Roberto",
-                        address: "Maximo Gomez #12",
-                        email: "roberto@Gmail.com",
-                        phone: 2435578399,
+                        fullname: "Comando",
+                        address: "maceo",
+                        email: "gert@has.com",
+                        phone: "34567889",
                       },
                     ],
                   },
                 },
               });
-              GuardarMensaje({
-                description: `Se creo correctamente el usuario:${data.createUser.fullname}`,
+              console.log(data.createUser.CreatedUser.fullname);
+              toast({
+                title: "Crear Usuario",
+                description: `Ha sido creado el  Usuario ${data.createUser.CreatedUser.fullname}`,
+                position: "top-right",
                 status: "success",
+                duration: 5000,
+                isClosable: true,
               });
+
               setTimeout(() => {
                 GuardarMensaje();
                 //router.push("/usuarios");
               }, 3000);
             } catch (error) {
-              GuardarMensaje({
-                description: error.message,
+              toast({
+                title: "Error al crear usuario",
+                description: "Ha ocurrido un error al crear el usuario ",
+                position: "top-right",
                 status: "error",
+                duration: 5000,
+                isClosable: true,
               });
               setTimeout(() => {
                 GuardarMensaje({});
