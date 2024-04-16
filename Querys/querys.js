@@ -29,8 +29,6 @@ const CREATE_USER = gql`
       }
       RecaptchaResponse {
         success
-        score
-        action
         challenge_ts
         hostname
       }
