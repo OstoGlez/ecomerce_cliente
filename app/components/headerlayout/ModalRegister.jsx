@@ -16,6 +16,8 @@ import { Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 
 function ModalRegister({ ...props }) {
+  console.log("props modal", props);
+
   const toast = useToast();
   const [mensaje, GuardarMensaje] = useState({});
   const validationSchema = Yup.object().shape({
@@ -68,6 +70,7 @@ function ModalRegister({ ...props }) {
                     email,
                     password,
                     address,
+                    captcha_token: "",
                     benefited: [
                       {
                         fullname: "Comando",

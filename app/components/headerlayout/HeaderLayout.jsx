@@ -44,6 +44,7 @@ const Header = () => {
   const { reducecount, productSelectedByCustomer, totalCosto } =
     useContext(ComponentContext);
   const [isOpen, setIsOpen] = useState(false);
+  const [captchaToken, setCaptchaToken] = useState(" ");
   const toast = useToast();
   const {
     isOpen: isOpenc,
@@ -64,7 +65,7 @@ const Header = () => {
   const captcha = useRef(null);
 
   const handleCaptcha = () => {
-    console.log(captcha.current.getValue());
+    setCaptchaToken(captcha.current.getValue());
   };
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -322,7 +323,7 @@ const Header = () => {
           <ModalHeader>Registrarse</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <ModalRegister />
+            <ModalRegister captcha_token={captchaToken} />
             <ReCAPTCHA
               ref={captcha}
               sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_WEBSITE_KEY}
