@@ -63,7 +63,8 @@ const Header = () => {
   const captcha = useRef(null);
 
   const handleCaptcha = () => {
-    setCaptchaToken(captcha.current.getValue());
+    //setCaptchaToken(captcha.current.getValue());
+    setCaptchaToken("rt4trfdvv466");
   };
   const toggleMenu = () => {
     setIsOpen(!isOpen);

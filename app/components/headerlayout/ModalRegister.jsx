@@ -12,6 +12,7 @@ import {
   Container,
   useToast,
 } from "@chakra-ui/react";
+import CustomToast from "../CustomToast/CustomToast.jsx";
 import { Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 
@@ -58,17 +59,7 @@ function ModalRegister({ ...props }) {
           onSubmit={async (values, actions) => {
             const { setSubmitting, resetForm } = actions;
             const { fullname, phone, email, password, address } = values;
-            !props.captcha_token
-              ? toast({
-                  title: "Ha ocurrido un error",
-                  description:
-                    "Debe pasar test de Robot antes de tocar el boton para Registrarse ",
-                  position: "top-right",
-                  status: "error",
-                  duration: 5000,
-                  isClosable: true,
-                })
-              : "";
+
             try {
               const { data } = await createUser({
                 variables: {
