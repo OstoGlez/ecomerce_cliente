@@ -15,7 +15,7 @@ import theme from "../../theme.js";
 //http://localhost:8080
 //https://api.lahabanerashop.com
 const httpLink = createHttpLink({
-  uri: "https://cmr-montero-server-dev-mnfn.4.us-1.fl0.io/",
+  uri: "https://api.lahabanerashop.com",
 });
 /*const stripePromise = loadStripe(
   "pk_test_51OWKRvGAdIRsEnMls9WNLCUaEIonKjEOHRhDuRxHNRwWipmgdbTMDH1FMroFbQyCV4QiDT2fJiUg22r2iD5HAoSb00n2vUM0hc"
