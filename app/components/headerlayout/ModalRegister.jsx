@@ -70,7 +70,7 @@ function ModalRegister({ ...props }) {
                     email,
                     password,
                     address,
-                    captcha_token: "",
+                    captcha_token: props.captcha_token,
                     benefited: [
                       {
                         fullname: "Comando",
