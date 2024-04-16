@@ -1,6 +1,5 @@
 "use client";
 import { useState, useRef, useContext } from "react";
-i;
 import {
   useToast,
   Box,
