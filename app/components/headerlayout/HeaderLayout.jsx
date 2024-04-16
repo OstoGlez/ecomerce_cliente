@@ -37,7 +37,7 @@ import ComponentContext from "@/Context/ComponentState/ComponentContext";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import ModalTable from "../ModalTable/ModalTable";
-import ReCAPTCHA from "react-google-recaptcha";
+//import ReCAPTCHA from "react-google-recaptcha";
 import ModalRegister from "./ModalRegister.jsx";
 
 const Header = () => {
