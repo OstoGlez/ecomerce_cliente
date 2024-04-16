@@ -18,6 +18,7 @@ const CREATE_USER = gql`
           fullname
           address
           phone
+          email
         }
         accessHistory {
           ipAddress
@@ -25,6 +26,13 @@ const CREATE_USER = gql`
           accessCount
         }
         create
+      }
+      RecaptchaResponse {
+        success
+        score
+        action
+        challenge_ts
+        hostname
       }
     }
   }
