@@ -32,6 +32,7 @@ import {
   TableContainer,
 } from "@chakra-ui/react";
 import ComponentContext from "@/Context/ComponentState/ComponentContext";
+import ModalSigin from "../../components/headerlayout/ModalSigin";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import ModalTable from "../ModalTable/ModalTable";
@@ -289,25 +290,10 @@ const Header = () => {
           <ModalHeader>Iniciar Sesión</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Input placeholder="Correo electrónico" />
-            <Input placeholder="Contraseña" type="password" mt={4} />
-            <Text
-              color="blue"
-              mt={4}
-              onClick={openRegisterModal}
-              _hover={{
-                color: "blue.500",
-                textShadow: "0 0 10px rgba(0, 0, 0, 0.836)",
-              }}
-            >
-              ¿No tienes cuenta? Regístrate
-            </Text>
+            <ModalSigin />
           </ModalBody>
           {}
           <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onLoginModalClose}>
-              Iniciar Sesión
-            </Button>
             <Button variant="ghost" onClick={onLoginModalClose}>
               Cancelar
             </Button>
