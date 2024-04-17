@@ -17,7 +17,7 @@ import {
 import { Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 
-export default function ModalSigin({ ...props }) {
+export default function ModalSigin({ openRegister }) {
   const toast = useToast();
   const validationSchema = Yup.object().shape({
     password: Yup.string().required("La contraseña es obligatoria"),
@@ -142,7 +142,7 @@ export default function ModalSigin({ ...props }) {
                       <Text
                         color="blue"
                         mt={4}
-                        onClick={openRegisterModal}
+                        onClick={openRegister}
                         _hover={{
                           color: "blue.500",
                           textShadow: "0 0 10px rgba(0, 0, 0, 0.836)",

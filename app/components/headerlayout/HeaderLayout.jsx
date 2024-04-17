@@ -290,7 +290,7 @@ const Header = () => {
           <ModalHeader>Iniciar Sesión</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <ModalSigin />
+            <ModalSigin openRegister={openRegisterModal} />
           </ModalBody>
           {}
           <ModalFooter>
