@@ -36,4 +36,13 @@ const CREATE_USER = gql`
   }
 `;
 
-export { CREATE_USER };
+const AUTHENTIFICATE_USER = gql`
+  mutation authenticateUser($input: AuthenticateInput) {
+    authenticateUser(input: $input) {
+      token
+      expiresOut
+    }
+  }
+`;
+
+export { CREATE_USER, AUTHENTIFICATE_USER };
