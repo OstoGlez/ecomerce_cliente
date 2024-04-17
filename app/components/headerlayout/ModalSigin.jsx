@@ -10,6 +10,8 @@ import {
   Center,
   Box,
   Container,
+  Flex,
+  Text,
   useToast,
 } from "@chakra-ui/react";
 import { Field, Form, Formik } from "formik";
@@ -21,6 +23,9 @@ export default function ModalSigin({ ...props }) {
     password: Yup.string().required("La contraseña es obligatoria"),
     email: Yup.string().required("El correo es obligatorio"),
   });
+  const openRegisterModal = () => {
+    console.log("no tengo");
+  };
   const [authenticateUser] = useMutation(AUTHENTIFICATE_USER);
   return (
     <Container
@@ -122,18 +127,31 @@ export default function ModalSigin({ ...props }) {
                       </FormControl>
                     )}
                   </Field>
-                  <Center>
-                    <Button
-                      border="border-0"
-                      bg="rgba(27, 125, 206, 0.966)"
-                      mt={4}
-                      color="rgba(250, 251, 253, 0.979)"
-                      isLoading={props.isSubmitting}
-                      type="submit"
-                    >
-                      Iniciar Sesion
-                    </Button>
-                  </Center>
+                  <Flex>
+                    <Center display="flex" flexDirection="column">
+                      <Button
+                        border="border-0"
+                        bg="rgba(27, 125, 206, 0.966)"
+                        mt={4}
+                        color="rgba(250, 251, 253, 0.979)"
+                        isLoading={props.isSubmitting}
+                        type="submit"
+                      >
+                        Iniciar Sesion
+                      </Button>
+                      <Text
+                        color="blue"
+                        mt={4}
+                        onClick={openRegisterModal}
+                        _hover={{
+                          color: "blue.500",
+                          textShadow: "0 0 10px rgba(0, 0, 0, 0.836)",
+                        }}
+                      >
+                        ¿No tienes cuenta? Regístrate
+                      </Text>
+                    </Center>
+                  </Flex>
                 </Form>
               </Center>
             </>
